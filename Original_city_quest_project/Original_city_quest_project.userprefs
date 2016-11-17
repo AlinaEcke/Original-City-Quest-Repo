@@ -1,0 +1,36 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CQ_Interface.cs">
+    <Files>
+      <File FileName="Assets\MainMenu.cs" Line="32" Column="27" />
+      <File FileName="Assets\Standard Assets\SBS\Core\Assert.cs" Line="1" Column="1" />
+      <File FileName="Assets\UniSWF\Standard Assets\runtimeSupport\AS3\AS3ImplRuntimeBackend.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CQ_Interface.cs" Line="3125" Column="27" />
+      <File FileName="Assets\Scripts\Preloader.cs" Line="322" Column="64" />
+      <File FileName="Assets\Scripts\DataContainer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\EnvironmentManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FileBrowser\FileBrowser.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\SBS\Managers\TokensManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GameplayManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\ObstaclesManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\SBS\Racing\Token.cs" Line="309" Column="1" />
+      <File FileName="Assets\Standard Assets\SBS\Level\FiniteStateMachine.cs" Line="72" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\CQ_Interface.cs" line="420" column="71" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\CQ_Interface.cs" line="659" column="1" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\DataContainer.cs" line="225" column="1" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\Managers\EnvironmentManager.cs" line="520" column="13" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\Managers\EnvironmentManager.cs" line="582" column="9" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\Managers\EnvironmentManager.cs" line="664" column="1" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\Managers\EnvironmentManager.cs" line="461" column="1" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\Managers\EnvironmentManager.cs" line="613" column="87" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\MainMenu.cs" line="40" column="1" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\CQ_Interface.cs" line="204" column="38" />
+      <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\CQ_Interface.cs" line="3109" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
