@@ -51,3 +51,5 @@ Temporary Items
 
 Library
 Logs
+*.suo
+Original_city_quest_project/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
