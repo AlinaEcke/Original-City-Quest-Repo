@@ -39,7 +39,7 @@ public class Preloader : MonoBehaviour
     protected bool soundXMLParsed = false;
     protected string version = "0.136";
     protected string xmlErrorMessage = string.Empty;
-    protected CQ_Interface _interface;
+    //protected CQ_Interface _interface;
 
     #region Unity Callbacks
     void Start()
@@ -48,7 +48,7 @@ public class Preloader : MonoBehaviour
         GameObject.DontDestroyOnLoad(coreManagers.transform.parent != null ? coreManagers.transform.parent.gameObject : coreManagers.gameObject);
         GameObject.DontDestroyOnLoad(gameManagers.transform.parent != null ? gameManagers.transform.parent.gameObject : gameManagers.gameObject);
 
-        _interface = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+        //_interface = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
 
         EnvironmentManager envManager = gameManagers.GetComponent<EnvironmentManager>();
         envManager.progressSignals.Register(gameObject, "OnEnvManagerProgress", 0.0f);
@@ -369,11 +369,11 @@ public class Preloader : MonoBehaviour
 
     IEnumerator FirstPreload()
     {
-        _interface.SendMessage("StartInterface");
+        //_interface.SendMessage("StartInterface");
 
         if (xmlError)
         {
-            _interface.gameObject.SendMessage("XMLError", xmlErrorMessage);
+            //_interface.gameObject.SendMessage("XMLError", xmlErrorMessage);
             //_interface.SetSplashMessage(xmlErrorMessage);
             Debug.LogWarning(xmlErrorMessage);
         }
@@ -390,12 +390,12 @@ public class Preloader : MonoBehaviour
                 {
                     bbTimer = -1.0f;
                     InternalConsole.Instance.Log("Balance Board is not connected");
-                    _interface.SetSplashMessage("Balance Board is not connected");
+                    //_interface.SetSplashMessage("Balance Board is not connected");
                 }
                 yield return new WaitForEndOfFrame();
             }
 
-            _interface.SendMessage("InterfaceCanProcede");
+           // _interface.SendMessage("InterfaceCanProcede");
         }
     }
 
@@ -405,7 +405,7 @@ public class Preloader : MonoBehaviour
 
         if (xmlError)
         {
-            _interface.SendMessage("XMLError", xmlErrorMessage);
+           // _interface.SendMessage("XMLError", xmlErrorMessage);
             //_interface.SetSplashMessage(xmlErrorMessage);
             Debug.LogWarning(xmlErrorMessage);
         }
@@ -422,7 +422,7 @@ public class Preloader : MonoBehaviour
                 {
                     bbTimer = -1.0f;
                     InternalConsole.Instance.Log("Balance Board is not connected");
-                    _interface.SetSplashMessage("Balance Board is not connected");
+                   // _interface.SetSplashMessage("Balance Board is not connected");
                 }
                 yield return new WaitForEndOfFrame();
             }
@@ -432,7 +432,7 @@ public class Preloader : MonoBehaviour
             while (!texturesLoaded && !buildingAssetsLoaded)
                 yield return new WaitForEndOfFrame();
 
-            _interface.SendMessage("ConfigurationReady");
+           // _interface.SendMessage("ConfigurationReady");
         }
 
         Debug.Log("PreloadAll");
@@ -442,13 +442,13 @@ public class Preloader : MonoBehaviour
     IEnumerator LoadEnvironment(int level)
     {
         loadingStartTime = TimeManager.Instance.MasterSource.TotalTime;
-        _interface.SetLoadingPerc(10);
+        //_interface.SetLoadingPerc(10);
         gameManagers.SendMessage("SetupConfiguration", level);
 
         while (!environmentGenerated)
             yield return new WaitForEndOfFrame();
 
-        _interface.SetLoadingPerc(50);
+       // _interface.SetLoadingPerc(50);
         InternalConsole.Instance.Log("OnEnvironmentGenerated");
 
         EnvironmentManager em = gameManagers.GetComponent<EnvironmentManager>();
@@ -466,7 +466,7 @@ public class Preloader : MonoBehaviour
         if (level > 0 && gameManagers.GetComponent<GameplayManager>().LearningPhaseDone)
             gameManagers.SendMessage("InitializeSimplePath");
 
-        _interface.SetLoadingPerc(90);
+       // _interface.SetLoadingPerc(90);
 
         environmentDestroyed = false;
         obstaclesDestroyed = false;
@@ -476,7 +476,7 @@ public class Preloader : MonoBehaviour
         float elapsedTime = TimeManager.Instance.MasterSource.TotalTime - loadingStartTime;
         float waitTime = Mathf.Max(0.0f, 2.0f - elapsedTime);
         yield return new WaitForSeconds(waitTime);
-        _interface.SetLoadingPerc(100);
+       // _interface.SetLoadingPerc(100);
         yield return new WaitForSeconds(0.5f);
 
         gameManagers.SendMessage("OnEnvironmentReady", em.Level);
@@ -500,7 +500,7 @@ public class Preloader : MonoBehaviour
 
         InternalConsole.Instance.Log("OnEnvironmentDestroyed");
 
-        _interface.SendMessage("GoToNextInterfaceState");
+      //  _interface.SendMessage("GoToNextInterfaceState");
     }
 
     IEnumerator CheckSessionXML(string xmlFile)

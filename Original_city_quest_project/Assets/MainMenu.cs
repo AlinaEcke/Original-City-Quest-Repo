@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour {
 	GameObject gameManagers;
 	EnvironmentManager envMgr;
 	GameplayManager gpMgr;
-	CQ_Interface cqInterface;
+	//CQ_Interface cqInterface;
 
 	// Use this for initialization
 	void Start () {
@@ -26,16 +26,20 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void PlayNavigation() {
+		//calling Play method to create level from xml:
 		Play (GameplayManager.GameplayType.Navigation);
-
 		DataContainer.SetFileName("Sessions\\currentSession" + ".ses");
 		DataContainer.SaveToFile();
 	}
 
 	public void PlayObstacleAvoidance() {
+		//calling Play method to create level from xml:
 		Play (GameplayManager.GameplayType.ObstacleAvoidance);
 	}
 
+	/*
+	 * Creates the level from xml template. And places character in level.
+	 **/
 	public void Play(GameplayManager.GameplayType gameplayType) {
 		gpMgr.gameplayType = gameplayType;
 
@@ -51,6 +55,7 @@ public class MainMenu : MonoBehaviour {
 		//To create the DataContainer from the EnvironmentManager, call:
 		envMgr.StartCreateEnvironment();
 
-
+		//Placing character in level:
+		gameManagers.GetComponent<GameplayManager>().InitializeCharacter(0);
 	}
 }

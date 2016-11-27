@@ -9,7 +9,7 @@ public class LoginBehaviour : MonoBehaviour {
     protected bool initialized = false;
     protected string patientCode = "";
     protected string adminPassword ="";
-    protected CQ_Interface _interface;
+    //protected CQ_Interface _interface;
 
     protected string codedAdminPassword = "123456";
 
@@ -34,7 +34,7 @@ public class LoginBehaviour : MonoBehaviour {
 
     void Start()
     {
-        _interface = gameObject.GetComponent<CQ_Interface>();        
+       // _interface = gameObject.GetComponent<CQ_Interface>();        
     }
 
 	void Update()
@@ -94,13 +94,13 @@ public class LoginBehaviour : MonoBehaviour {
 			GUI.Label(new Rect(textfieldX, textfieldY, textfieldWidth, textfieldHeigth), adminPassword, customStyle);
 		}
 #else
-        if (_interface.State == CQ_Interface.LoginPage)
+        //if (_interface.State == CQ_Interface.LoginPage)
 		{
             patientCode = GUI.TextField(new Rect(textfieldX, textfieldY, textfieldWidth, textfieldHeigth), patientCode, 10, customStyle);
             patientCode = Regex.Replace(patientCode, @"[^Z0-9]", "");
 		}
 
-        if (_interface.State == CQ_Interface.AdminPage && !_interface.IsAdminLogged)
+       // if (_interface.State == CQ_Interface.AdminPage && !_interface.IsAdminLogged)
 		{			
 			adminPassword = GUI.PasswordField(new Rect(textfieldX, textfieldY, textfieldWidth, textfieldHeigth), adminPassword, '*', 10, customStyle);
             adminPassword = Regex.Replace(adminPassword, @"[^Z0-9]", "");

@@ -37,13 +37,14 @@ public class GameplayManager : MonoBehaviour
             this.param = param;
         }
     }
-
+    //enumeration set two possible gender types
     public enum CharacterGender
     {
         Male = 0,
         Female
     }
 
+    //setting up targets
     public enum TargetType
     {
         Bakery = 1,
@@ -354,7 +355,7 @@ public class GameplayManager : MonoBehaviour
     protected int levelCount = 0;
     protected string configText = string.Empty;
     protected CharacterGender gender = CharacterGender.Male;
-    protected CQ_Interface interfaces;
+    //protected CQ_Interface interfaces;
     protected GameObject cameraObj;
     protected GameObject character;
     protected Stack<Target> targetStack = new Stack<Target>();
@@ -404,7 +405,7 @@ public class GameplayManager : MonoBehaviour
     {
         fsm = GetComponent<FiniteStateMachine>();
         cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
-        interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+        //interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
         preloader = GameObject.FindGameObjectWithTag("Preloader").GetComponent<Preloader>();
         bbManager = GameObject.FindGameObjectWithTag("CoreManagers").GetComponent<BalanceBoardManager>();
         envManager = GameObject.FindGameObjectWithTag("GameManagers").GetComponent<EnvironmentManager>();
@@ -419,9 +420,9 @@ public class GameplayManager : MonoBehaviour
         Score += bonusScore;
         bonusCounter++;
         totalBonusTaken++;
-        interfaces.UpdateBonusInterface();
+       // interfaces.UpdateBonusInterface();
 
-        interfaces.SendMessage("InitFlyier", bonusScore.ToString());
+      //  interfaces.SendMessage("InitFlyier", bonusScore.ToString());
 
         TrackingManager.Instance.LogEntry(TrackingManager.Command.Event, "", character.transform.position, "gem_collected", bonusScore.ToString());
     }
@@ -429,8 +430,8 @@ public class GameplayManager : MonoBehaviour
     void ObstacleAvoided(int bonusScore)
     {
         Score += bonusScore;
-        interfaces.SendMessage("InitFlyier", bonusScore.ToString());
-        interfaces.SendMessage("UpdateScore", score);
+        //interfaces.SendMessage("InitFlyier", bonusScore.ToString());
+        //interfaces.SendMessage("UpdateScore", score);
     }
 
     void CurrentToken(Token token)
@@ -459,11 +460,11 @@ public class GameplayManager : MonoBehaviour
 
     void CharacterCollided()
     {
-        interfaces.SendMessage("InitFlyier", "-2");
+        //interfaces.SendMessage("InitFlyier", "-2");
         if (score > 0)
         {
             score = Mathf.Max(0, score - 2);
-            interfaces.SendMessage("UpdateScore", score);
+            //interfaces.SendMessage("UpdateScore", score);
         }
         /*interfaces.SendMessage("InitFlyier", "-1000");
         if (currentTargetScore > 2000)
@@ -489,7 +490,7 @@ public class GameplayManager : MonoBehaviour
     {
         this.level = level;
 
-        interfaces.SendMessage("LoadNextInterfaceState");
+       // interfaces.SendMessage("LoadNextInterfaceState");
 
         if (gameplayType == GameplayType.Navigation)
         {
@@ -995,7 +996,7 @@ public class GameplayManager : MonoBehaviour
         Debug.LogWarning("TARGETS: " + tStr);
         */
 
-        interfaces.SendMessage("UpdateTotalTarget", totalTarget);
+        //interfaces.SendMessage("UpdateTotalTarget", totalTarget);
     }
 
     public void PrepareTargetGate(bool isLearning)
@@ -1102,9 +1103,9 @@ public class GameplayManager : MonoBehaviour
             if (currentTarget.gameObject != null)
             {
                 Vector3 targetPos = currentTarget.gameObject.transform.position;
-                interfaces.ShowTargetOnMap(targetPos);
-                interfaces.ViewInstructions("Find the", currentTarget.type.ToString(), false, false);
-                interfaces.SendMessage("UpdateTargetSigns", currentTarget.type.ToString());
+               // interfaces.ShowTargetOnMap(targetPos);
+               // interfaces.ViewInstructions("Find the", currentTarget.type.ToString(), false, false);
+              //  interfaces.SendMessage("UpdateTargetSigns", currentTarget.type.ToString());
                 briefingTimer = TimeManager.Instance.MasterSource.TotalTime;
 
                 Vector3 playerPos = character.transform.position;
@@ -1137,8 +1138,8 @@ public class GameplayManager : MonoBehaviour
     }
     void OnBriefingStateExit()
     {
-        interfaces.HideInstructions();
-        interfaces.SendMessage("SetTargetSignsVisibility", true);
+       // interfaces.HideInstructions();
+       // interfaces.SendMessage("SetTargetSignsVisibility", true);
     }
 
     protected float stayTimer = -1.0f;
@@ -1205,18 +1206,18 @@ public class GameplayManager : MonoBehaviour
         else if (diffFactor > 1.3f)
             starNum = 2;
         Debug.Log("Actual: " + actualDistance + ", manhattan: " + manhattanTarget);
-        interfaces.ViewInstructions("Well done!", "empty", true, true, starNum);
+        //interfaces.ViewInstructions("Well done!", "empty", true, true, starNum);
 
-        interfaces.SendMessage("UpdateTargets", 1);
-        interfaces.SendMessage("SetTargetSignsVisibility", false);
+       // interfaces.SendMessage("UpdateTargets", 1);
+        //interfaces.SendMessage("SetTargetSignsVisibility", false);
         score += 20;
-        interfaces.SendMessage("UpdateScore", score);
+       // interfaces.SendMessage("UpdateScore", score);
 
         //float elapsedTime = TimeManager.Instance.MasterSource.TotalTime - targetTimer;
        
         if (level > 0 && LearningPhaseDone)
         {
-            interfaces.SendMessage("InitFlyier", "20");
+           // interfaces.SendMessage("InitFlyier", "20");
             TrackingManager.Instance.LogEntry(TrackingManager.Command.Event, currentTarget.type.ToString(), character.transform.position, "found", "target_" + targetCounter);
             TrackingManager.Instance.LogSummaryRow(currentTarget.type.ToString(), actualDistance, manhattanTarget, lapElapsedTime, starNum, obstaclePassedCounterForTarget, obstacleHitCounterForTarget, pedestrianHitCounterForTarget, level);
         }
@@ -1244,7 +1245,7 @@ public class GameplayManager : MonoBehaviour
         //obstaclePassedCounter = 0;
         //pedestrianHitCounter = 0;
 
-        interfaces.HideInstructions();
+       // interfaces.HideInstructions();
         currentTargetScore = 10000;
     }
 
@@ -1257,7 +1258,7 @@ public class GameplayManager : MonoBehaviour
         string message = "Level " + level + " Completed!";
 
         if (level != 0)
-            interfaces.ShowResultsPopup(message, 0);
+            //interfaces.ShowResultsPopup(message, 0);
 
         StartCoroutine(FinalSequence());
         level++;
@@ -1268,7 +1269,7 @@ public class GameplayManager : MonoBehaviour
     void OnEndLevelStateExit()
     {
         totalLevelElapsedTime = 0.0f;
-        interfaces.HideInstructions();
+       // interfaces.HideInstructions();
 
         obstaclePassedCounter = 0;
         obstacleHitCounter = 0;
@@ -1281,7 +1282,7 @@ public class GameplayManager : MonoBehaviour
         if (preloader.useOVR)
             t = 10.0f;
         yield return new WaitForSeconds(t);
-        interfaces.StartFadeOut(0.5f,null);
+       // interfaces.StartFadeOut(0.5f,null);
         yield return new WaitForSeconds(1.0f);
         preloader.UnloadLevel();
     }
@@ -1298,10 +1299,10 @@ public class GameplayManager : MonoBehaviour
 
             Vector3 targetPos = currentTarget.gameObject.transform.position;
             
-            interfaces.ShowTargetOnMap(targetPos);
+            //interfaces.ShowTargetOnMap(targetPos);
 
-            interfaces.ViewInstructions("Find the", currentTarget.type.ToString(), false, false);
-            interfaces.SendMessage("UpdateTargetSigns", currentTarget.type.ToString());
+            //interfaces.ViewInstructions("Find the", currentTarget.type.ToString(), false, false);
+           // interfaces.SendMessage("UpdateTargetSigns", currentTarget.type.ToString());
             briefingTimer = TimeManager.Instance.MasterSource.TotalTime;
             lapTimer = TimeManager.Instance.MasterSource.TotalTime;
 
@@ -1329,8 +1330,8 @@ public class GameplayManager : MonoBehaviour
     }
     void OnBriefingLearningExit()
     {
-        interfaces.HideInstructions();
-        interfaces.SendMessage("SetTargetSignsVisibility", true);
+        //interfaces.HideInstructions();
+        //interfaces.SendMessage("SetTargetSignsVisibility", true);
     }
 
     //protected float stayTimer = -1.0f;
@@ -1395,10 +1396,10 @@ public class GameplayManager : MonoBehaviour
         else if (diffFactor > 1.3f)
             starNum = 2;
         Debug.Log("Actual: " + actualDistance + ", manhattan: " + manhattanTarget + " - diffFactor: " + diffFactor);
-        interfaces.ViewInstructions("Well done!", "empty", true, true, starNum);
+       // interfaces.ViewInstructions("Well done!", "empty", true, true, starNum);
         //interfaces.ShowResultsPopup("Well done!", starNum);
-        interfaces.SendMessage("UpdateTargets", 1);
-        interfaces.SendMessage("SetTargetSignsVisibility", false);
+       // interfaces.SendMessage("UpdateTargets", 1);
+       // interfaces.SendMessage("SetTargetSignsVisibility", false);
         //score += currentTargetScore;
         //interfaces.SendMessage("UpdateScore", score);
 
@@ -1413,7 +1414,7 @@ public class GameplayManager : MonoBehaviour
         {
             foundTimer = -1.0f;
             fadeTimer = currentTime;
-            interfaces.StartFadeOut(0.5f, null);
+            //interfaces.StartFadeOut(0.5f, null);
 
             /*if (targetStack.Count > 0)
                 fsm.State = BriefingLearning;
@@ -1445,15 +1446,15 @@ public class GameplayManager : MonoBehaviour
     }
     void OnFoundLearningExit()
     {
-        interfaces.HideInstructions();
+        //interfaces.HideInstructions();
         currentTargetScore = 10000;
-        interfaces.StartFadeIn(0.5f, null);
+       // interfaces.StartFadeIn(0.5f, null);
     }
 
     void OnEndLearningEnter()
     {
         Debug.Log("FINITO LEARNING!");
-        interfaces.ViewInstructions("Learning Completed!", "empty", true, true, 0);
+        //interfaces.ViewInstructions("Learning Completed!", "empty", true, true, 0);
         StartCoroutine(FinalSequence());
         learningPhaseDone = true;
 
@@ -1464,14 +1465,14 @@ public class GameplayManager : MonoBehaviour
     }
     void OnEndLearningExit()
     {
-        interfaces.HideInstructions();
+        //interfaces.HideInstructions();
     }
 
     //Obstacle Avoidance Gameplay
     void OnBriefingObstAvoidEnter()
     {
         Debug.Log("OnBriefingObstAvoidEnter");
-        interfaces.ViewInstructions("Collect as many gems as possible within given time", "empty", false, false, 0);
+        //interfaces.ViewInstructions("Collect as many gems as possible within given time", "empty", false, false, 0);
         briefingTimer = TimeManager.Instance.MasterSource.TotalTime;
     }
     void OnBriefingObstAvoidExec()
@@ -1491,14 +1492,14 @@ public class GameplayManager : MonoBehaviour
     void OnBriefingObstAvoidExit()
     {
         Debug.Log("OnBriefingObstAvoidExit");
-        interfaces.HideInstructions();
+        //interfaces.HideInstructions();
         LevelRoot.Instance.BroadcastMessage("SetInputEnabled", true);
     }
 
     void OnObstAvoidEnter()
     {
         gameplayTime = startGameplayTime[level-1];
-        interfaces.SetGameTimeVisibility(false);
+        //interfaces.SetGameTimeVisibility(false);
     }
     void OnObstAvoidExec()
     {
@@ -1523,7 +1524,7 @@ public class GameplayManager : MonoBehaviour
         string message = "Level " + level + " Completed!";
         if (level == 0)
             message = "Tutorial Completed!";
-        interfaces.ShowResultsPopup(message, 0);
+       // interfaces.ShowResultsPopup(message, 0);
 
         TrackingManager.Instance.LogSummaryRow(BonusCount, startGameplayTime[level - 1], obstaclePassedCounter, obstacleHitCounter, pedestrianHitCounter, level);
 
@@ -1538,7 +1539,7 @@ public class GameplayManager : MonoBehaviour
         obstaclePassedCounter = 0;
         obstacleHitCounter = 0;
         pedestrianHitCounter = 0;
-        interfaces.HideInstructions();
+        //interfaces.HideInstructions();
     }
     #endregion
 

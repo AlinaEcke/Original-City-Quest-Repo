@@ -2135,8 +2135,8 @@ public class EnvironmentManager : MonoBehaviour
         }
         mapTexture.Apply();
 
-        CQ_Interface ui = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
-        ui.SetupMap(mapTexture, new Vector2(mapMin.x, mapMin.z), new Vector2(mapMax.x, mapMax.z));
+       // CQ_Interface ui = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+        //ui.SetupMap(mapTexture, new Vector2(mapMin.x, mapMin.z), new Vector2(mapMax.x, mapMax.z));
     }
 
     protected void GeneratePedestrian(int pedNum, PathManagerComponent pathManagerComponent)

@@ -111,8 +111,8 @@ public class DataContainer
     protected ObstaclesManager obstacleManager = null;
     [NonSerialized()]
     protected GameplayManager gameplayManager = null;
-    [NonSerialized()]
-    protected CQ_Interface interfaces = null;
+    //[NonSerialized()]
+    //protected CQ_Interface interfaces = null;
     [NonSerialized()]
     protected Dictionary<string, Token> tokenByName = null;
     #endregion
@@ -125,7 +125,7 @@ public class DataContainer
         tokenManager = gameManagers.GetComponent<TokensManager>();
         obstacleManager = gameManagers.GetComponent<ObstaclesManager>();
         gameplayManager = gameManagers.GetComponent<GameplayManager>();
-        interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+        //interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
         tokenByName = new Dictionary<string, Token>();
     }
 
@@ -331,13 +331,13 @@ public class DataContainer
                 }
                 else
                 {
-                    if (k < targetCount - 1)
+                   /* if (k < targetCount - 1)
                     {
                         Debug.Log("targetCount: " + targetCount + ", levelCount " + levelCount + ", " + gameplayManager.TargetIndexStack.Count);
-                        interfaces.SetTfSessionResult(true, "Error processing XML. Please try again", false);
-                        interfaces.SetTfSaveResult(false);
-                        interfaces.DisableSaveButton();
-                    }
+                        //interfaces.SetTfSessionResult(true, "Error processing XML. Please try again", false);
+                       // interfaces.SetTfSaveResult(false);
+                       // interfaces.DisableSaveButton();
+                    }*/
                 }
 
                 //levelsGates[i,k] = gameplayManager.GateIndexStack.Pop();

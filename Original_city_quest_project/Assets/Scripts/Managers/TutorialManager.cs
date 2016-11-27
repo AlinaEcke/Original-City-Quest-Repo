@@ -63,7 +63,7 @@ public class TutorialManager : MonoBehaviour
     protected int tutPhase = 1;
 
     protected TutorialFSM fsm = null;
-    protected CQ_Interface _interface;
+    //protected CQ_Interface _interface;
     protected GameplayManager gameplayManager;
     protected TutorialStates[] currentTutorialStatesSequence;
     protected string[] currentTutorialSequenceMessages;
@@ -113,7 +113,7 @@ public class TutorialManager : MonoBehaviour
         protected TutorialStates currentState;
         protected TutorialManager tutorialManager;
         protected GameplayManager gameplayManager;
-        protected CQ_Interface _interface;
+       // protected CQ_Interface _interface;
         protected BalanceBoardManager bbManager;
         protected GeneralSoundsManager genSoundsManager;
         protected bool statePassed = false;
@@ -129,17 +129,17 @@ public class TutorialManager : MonoBehaviour
 
         #region Functions
 
-        void ResetState(CQ_Interface.TutorialPages interfaceState)
+       /* void ResetState(CQ_Interface.TutorialPages interfaceState)
         {
             if (lastStateFailed)
             {
-                _interface.StartFadeOut(0.3f, () =>
+                /*_interface.StartFadeOut(0.3f, () =>
                 {
-                    _interface.GoToTutorialState(interfaceState, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
+                   // _interface.GoToTutorialState(interfaceState, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
                     tutorialManager.character.transform.position = lastCharPosition;
                     playerKinem.KinematicState = 0;
                     playerKinem.gameObject.transform.forward = lastForward;
-                    _interface.StartFadeIn(0.4f, () => { lastCharPosition = tutorialManager.character.transform.position; });
+                    //_interface.StartFadeIn(0.4f, () => { lastCharPosition = tutorialManager.character.transform.position; });
                 });
 
                 stateResetted = true;
@@ -148,7 +148,7 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 lastCharPosition = tutorialManager.character.transform.position;
-                _interface.GoToTutorialState(interfaceState, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
+                //_interface.GoToTutorialState(interfaceState, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
             }
 
             kinematicState = playerKinem.KinematicState;
@@ -156,7 +156,8 @@ public class TutorialManager : MonoBehaviour
 
             lastStateFailed = false;
             statePassed = false;
-        }
+        } */
+
 
         void CheckFirstState()
         {
@@ -193,7 +194,7 @@ public class TutorialManager : MonoBehaviour
             this.AddState(TutorialManager.TutorialStates.TurnBack, OnTurnBackEnter, OnTurnBackExec, OnTurnBackExit);
 
             bbManager = GameObject.FindGameObjectWithTag("CoreManagers").GetComponent<BalanceBoardManager>();
-            _interface = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+            //_interface = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
             genSoundsManager = GameObject.FindGameObjectWithTag("GameManagers").GetComponent<GeneralSoundsManager>();
             gameplayManager = _gameplayManager;
             tutorialManager = _tutorialManager;
@@ -209,7 +210,7 @@ public class TutorialManager : MonoBehaviour
         {
             playerKinem.SendMessage("SetInputEnabled", false);
             Debug.Log("--- TUTORIAL MANAGER: INSTRUCTIONS STATE ---");
-            _interface.GoToTutorialState(CQ_Interface.TutorialPages.startTutorial, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
+           // _interface.GoToTutorialState(CQ_Interface.TutorialPages.startTutorial, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
             startTutorialTimer = TimeManager.Instance.MasterSource.TotalTime;
 
             CheckFirstState();
@@ -227,8 +228,8 @@ public class TutorialManager : MonoBehaviour
         void OnInstructionExit(TutorialFSM self, float time)
         {
             startTutorialTimer = -1.0f;
-            _interface.ShowHideTutorial(true);
-            _interface.HideInstructions();
+            //_interface.ShowHideTutorial(true);
+           // _interface.HideInstructions();
             tutorialManager.ItsACrossToken = false;
             playerKinem.SendMessage("SetInputEnabled", true);
         }
@@ -239,7 +240,7 @@ public class TutorialManager : MonoBehaviour
         {
             playerKinem.SendMessage("SetInputEnabled", false);
             Debug.Log("--- TUTORIAL MANAGER: INSTRUCTIONS STATE ---");
-            _interface.ViewInstructions("Find the", "Bakery", false, false);
+            //_interface.ViewInstructions("Find the", "Bakery", false, false);
             startTutorialTimer = TimeManager.Instance.MasterSource.TotalTime;
 
             CheckFirstState();
@@ -255,8 +256,8 @@ public class TutorialManager : MonoBehaviour
         void OnInstruction2Exit(TutorialFSM self, float time)
         {
             startTutorialTimer = -1.0f;
-            _interface.ShowHideTutorial(true);
-            _interface.HideInstructions();
+            //_interface.ShowHideTutorial(true);
+            //_interface.HideInstructions();
             tutorialManager.ItsACrossToken = false;
             playerKinem.SendMessage("SetInputEnabled", true);
         }
@@ -267,9 +268,9 @@ public class TutorialManager : MonoBehaviour
         void OnMessageEnter(TutorialFSM self, float time)
         {
             playerKinem.SendMessage("SetInputEnabled", false);
-            _interface.GoToTutorialState(CQ_Interface.TutorialPages.message, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
-            _interface.SetAnimatedMessage(tutorialManager.tutPhase == 2 ? "image" : "text");
-            _interface.ShowHideTutorial(true);
+           // _interface.GoToTutorialState(CQ_Interface.TutorialPages.message, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep]);
+           // _interface.SetAnimatedMessage(tutorialManager.tutPhase == 2 ? "image" : "text");
+           // _interface.ShowHideTutorial(true);
             startMessageTimer = TimeManager.Instance.MasterSource.TotalTime;
 
             //SetMessageText();
@@ -287,8 +288,8 @@ public class TutorialManager : MonoBehaviour
         void OnMessageExit(TutorialFSM self, float time)
         {
             startMessageTimer = -1.0f;
-            _interface.ShowHideTutorial(true);
-            _interface.HideInstructions();
+            //_interface.ShowHideTutorial(true);
+           // _interface.HideInstructions();
             tutorialManager.ItsACrossToken = false;
             playerKinem.SendMessage("SetInputEnabled", true);
         }
@@ -299,8 +300,8 @@ public class TutorialManager : MonoBehaviour
         void OnGoStraightEnter(TutorialFSM self, float time)
         {
             lastCharPosition = tutorialManager.character.transform.position;
-            _interface.GoToTutorialState(CQ_Interface.TutorialPages.shortStraight, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep], tutorialManager.tutPhase == 0);
-            _interface.ShowHideTutorial(true);
+           // _interface.GoToTutorialState(CQ_Interface.TutorialPages.shortStraight, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep], tutorialManager.tutPhase == 0);
+           // _interface.ShowHideTutorial(true);
 
             if (this.PrevState == TutorialStates.Message)
                 longitudinalControl = tutorialManager.reverseToken ? 0.9f : 0.10f;
@@ -349,7 +350,7 @@ public class TutorialManager : MonoBehaviour
                 if (!statePassed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Up))
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                   // _interface.ShowHideTutorial(false);
                     //playerKinem.SetDirectionsEnabled(false, false, false, false);
                     statePassed = true;
                 }
@@ -391,9 +392,9 @@ public class TutorialManager : MonoBehaviour
         void OnReturnToCenterEnter(TutorialFSM self, float time)
         {
             playerKinem.SendMessage("SetInputEnabled", false);
-            _interface.ShowHideTutorial(true);
+           // _interface.ShowHideTutorial(true);
 
-            _interface.GoToTutorialState(CQ_Interface.TutorialPages.returnToCenter, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep], tutorialManager.tutPhase == 0);
+           // _interface.GoToTutorialState(CQ_Interface.TutorialPages.returnToCenter, tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep], tutorialManager.tutPhase == 0);
             startReturnToCenterTimer = TimeManager.Instance.MasterSource.TotalTime;
             stopReturnToCenterTimer = -1.0f;
             //SetMessageText();
@@ -407,7 +408,7 @@ public class TutorialManager : MonoBehaviour
             {
                 startReturnToCenterTimer = -1.0f;
                 stopReturnToCenterTimer = now;
-                _interface.ShowHideTutorial(false);
+               // _interface.ShowHideTutorial(false);
             }
 
             if (stopReturnToCenterTimer > 0.0f && now - stopReturnToCenterTimer > 1.5f)
@@ -420,7 +421,7 @@ public class TutorialManager : MonoBehaviour
         void OnReturnToCenterExit(TutorialFSM self, float time)
         {
             startReturnToCenterTimer = -1.0f;
-            _interface.ShowHideTutorial(true);
+           // _interface.ShowHideTutorial(true);
             //_interface.HideInstructions();
             tutorialManager.ItsACrossToken = false;
             playerKinem.SendMessage("SetInputEnabled", true);
@@ -431,16 +432,16 @@ public class TutorialManager : MonoBehaviour
         float stopTimer = -1.0f;
         void OnStopEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.shortBack);
+            //ResetState(CQ_Interface.TutorialPages.shortBack);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.shortBack);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
             playerKinem.SetDirectionsEnabled(false, false, false, true);
             CheckFirstState();
         }
 
         void OnStopExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+            //_interface.UpdateFade();
             
             float now = TimeManager.Instance.MasterSource.TotalTime;
             if (stateResetted)
@@ -466,7 +467,7 @@ public class TutorialManager : MonoBehaviour
                 if (!statePassed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Down))
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                    //_interface.ShowHideTutorial(false);
                     statePassed = true;
                     stopTimer = now;
                 }
@@ -504,9 +505,9 @@ public class TutorialManager : MonoBehaviour
 
         void OnAvoidObstacleLeftEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.avoidObstacleLeftBis);
+           // ResetState(CQ_Interface.TutorialPages.avoidObstacleLeftBis);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.avoidObstacleLeftBis);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
             //obstacleTimer = TimeManager.Instance.MasterSource.TotalTime;
             statePassed = false;
             kinematicState = playerKinem.KinematicState;
@@ -519,7 +520,7 @@ public class TutorialManager : MonoBehaviour
         void OnAvoidObstacleLeftExec(TutorialFSM self, float time)
         {
 
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
             if (stateResetted)
@@ -556,7 +557,7 @@ public class TutorialManager : MonoBehaviour
                     if (tutorialManager.Longitudinal > 0.40f || tutorialManager.Trasversal < 0.0f)
                     {
                         playerKinem.SetDirectionsEnabled(false, false, false, false);
-                        _interface.ShowHideTutorial(false);
+                        //_interface.ShowHideTutorial(false);
                     }
                 }
 
@@ -594,9 +595,9 @@ public class TutorialManager : MonoBehaviour
         protected float currentRightMove = 0.0f;
         void OnAvoidObstacleRightEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.avoidObstacleRightBis);
+            //ResetState(CQ_Interface.TutorialPages.avoidObstacleRightBis);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.avoidObstacleRightBis);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
             //obstacleTimer = TimeManager.Instance.MasterSource.TotalTime;
             statePassed = false;
             kinematicState = playerKinem.KinematicState;
@@ -608,13 +609,13 @@ public class TutorialManager : MonoBehaviour
             GameObject.FindGameObjectWithTag("StaticObjects").BroadcastMessage("Reset", SendMessageOptions.DontRequireReceiver);
             GameObject.FindGameObjectWithTag("StaticObjects").BroadcastMessage("Activate", SendMessageOptions.DontRequireReceiver);
             //GameObject.FindGameObjectWithTag("StaticObjects").BroadcastMessage("Deactivate", SendMessageOptions.DontRequireReceiver);
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
         }
 
         void OnAvoidObstacleRightExec(TutorialFSM self, float time)
         {
 
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
             if (stateResetted)
@@ -653,7 +654,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 //else if (itsOnRight && tutorialManager.Longitudinal > 0.55f)
                 else if (itsOnRight && tutorialManager.Longitudinal > 0.80f)
-                    _interface.ShowHideTutorial(false);
+                    //_interface.ShowHideTutorial(false);
 
                 //if (tutorialManager.Longitudinal > 0.63f)
                 if (tutorialManager.Longitudinal > 0.90f)
@@ -661,7 +662,7 @@ public class TutorialManager : MonoBehaviour
                     if (itsOnRight)
                     {
                         genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                        _interface.ShowHideTutorial(false);
+                        //_interface.ShowHideTutorial(false);
                         tutorialManager.GoToNextStep(true);
                     }
                     else
@@ -693,9 +694,9 @@ public class TutorialManager : MonoBehaviour
         void OnTurnRightEnter(TutorialFSM self, float time)
         {
             Debug.Log("TUTORIAL MANAGER - TURN RIGHT STATE");
-            ResetState(CQ_Interface.TutorialPages.turnRight);
+            //ResetState(CQ_Interface.TutorialPages.turnRight);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.turnRight);
-            _interface.ShowHideTutorial(false);
+           // _interface.ShowHideTutorial(false);
             statePassed = false;
             turnRightPressed = false;
             directionEnabled = false;
@@ -708,7 +709,7 @@ public class TutorialManager : MonoBehaviour
         void OnTurnRightExec(TutorialFSM self, float time)
         {
 
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
             
             float now = TimeManager.Instance.MasterSource.TotalTime;
             if (stateResetted)
@@ -737,7 +738,7 @@ public class TutorialManager : MonoBehaviour
                 {
                     playerKinem.SetDirectionsEnabled(false, true, false, false);
                     directionEnabled = true;
-                    _interface.ShowHideTutorial(true);
+                   // _interface.ShowHideTutorial(true);
                 }
 
                 if (turnRightPressed)
@@ -747,7 +748,7 @@ public class TutorialManager : MonoBehaviour
                 if (directionEnabled && !turnRightPressed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Right))   //3
                 {
                     //playerKinem.SetDirectionsEnabled(false, true, false, false);
-                    _interface.ShowHideTutorial(false);
+                    //_interface.ShowHideTutorial(false);
                     turnRightPressed = true;
                     tutorialManager.ItsACrossToken = false;
                     //playerKinem.SetDirectionsEnabled(false, false, false, false);
@@ -758,7 +759,7 @@ public class TutorialManager : MonoBehaviour
                 if (tokenConditions && turnRightPressed)
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                    //_interface.ShowHideTutorial(false);
                     tutorialManager.GoToNextStep(true);
                 }
             }
@@ -778,9 +779,9 @@ public class TutorialManager : MonoBehaviour
         bool directionsChanged = false;
         void OnTurnLeftEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.turnLeft);
+            //ResetState(CQ_Interface.TutorialPages.turnLeft);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.turnLeft);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
             statePassed = false;
             kinematicState = playerKinem.KinematicState;
             //playerKinem.SetDirectionsEnabled(false, false, true, false);
@@ -791,7 +792,7 @@ public class TutorialManager : MonoBehaviour
 
         void OnTurnLeftExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+            //_interface.UpdateFade();
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
             if (stateResetted)
@@ -819,7 +820,7 @@ public class TutorialManager : MonoBehaviour
                 {
                     playerKinem.SetDirectionsEnabled(false, false, true, false);
                     directionEnabled = true;
-                    _interface.ShowHideTutorial(true);
+                    //_interface.ShowHideTutorial(true);
                     Debug.Log("TURN RIGHT TUTORIAL SHOWN: 111");
                 }
 
@@ -829,7 +830,7 @@ public class TutorialManager : MonoBehaviour
                 if (directionEnabled && !turnLeftKeyPressed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Left))   //3
                 {
                     //playerKinem.SetDirectionsEnabled(false, false, true, false);
-                    _interface.ShowHideTutorial(false);
+                   // _interface.ShowHideTutorial(false);
                     turnLeftKeyPressed = true;
                     tutorialManager.ItsACrossToken = false;
                     //playerKinem.SetDirectionsEnabled(false, false, false, false);
@@ -839,7 +840,7 @@ public class TutorialManager : MonoBehaviour
                 if (turnLeftKeyPressed && tokenConditions)
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                    //_interface.ShowHideTutorial(false);
                     tutorialManager.GoToNextStep(true);
                 }
             }
@@ -857,9 +858,9 @@ public class TutorialManager : MonoBehaviour
         #region Procede State
         void OnProcedeEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.shortStraight);
+           // ResetState(CQ_Interface.TutorialPages.shortStraight);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.shortStraight);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
             statePassed = false;
             kinematicState = playerKinem.KinematicState;
             playerKinem.SetDirectionsEnabled(true, false, false, false);
@@ -867,7 +868,7 @@ public class TutorialManager : MonoBehaviour
         }
         void OnProcedeExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+            //_interface.UpdateFade();
 
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
@@ -892,7 +893,7 @@ public class TutorialManager : MonoBehaviour
                 if (!statePassed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Up))
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                    //_interface.ShowHideTutorial(false);
                     statePassed = true;
                     //playerKinem.SetDirectionsEnabled(false, false, false, false);
                 }
@@ -913,15 +914,15 @@ public class TutorialManager : MonoBehaviour
 
         void OnFinishOkEnter(TutorialFSM self, float time)
         {
-            _interface.ShowHideTutorial(false);
+            //_interface.ShowHideTutorial(false);
             //_interface.ViewInstructions("Well Done!", "empty", true, true);
-            _interface.ViewInstructions(tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep], "empty", true, true);
+            //_interface.ViewInstructions(tutorialManager.currentTutorialSequenceMessages[tutorialManager.currentStep], "empty", true, true);
             finishTimer = TimeManager.Instance.MasterSource.TotalTime;
         }
 
         void OnFinishOkExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+            //_interface.UpdateFade();
 
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
@@ -953,16 +954,16 @@ public class TutorialManager : MonoBehaviour
         {
             //_interface.ResetFade();
             finishTimer = -1.0f;
-            _interface.HideInstructions();
+          //  _interface.HideInstructions();
         }
         #endregion
 
         #region SpeedUp State
         void OnSpeedUpEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.speedUp);
+           // ResetState(CQ_Interface.TutorialPages.speedUp);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.speedUp);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
 
             lastStateFailed = false;
             statePassed = false;
@@ -972,7 +973,7 @@ public class TutorialManager : MonoBehaviour
 
         void OnSpeedUpExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
 
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
@@ -997,7 +998,7 @@ public class TutorialManager : MonoBehaviour
                 if (!statePassed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Up))
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                   // _interface.ShowHideTutorial(false);
                     statePassed = true;
                     //playerKinem.SetDirectionsEnabled(false, false, false, false);
                 }
@@ -1040,16 +1041,16 @@ public class TutorialManager : MonoBehaviour
         #region SlowDown State
         void OnSlowDownEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.slowDown);
+           // ResetState(CQ_Interface.TutorialPages.slowDown);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.slowDown);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
             playerKinem.SetDirectionsEnabled(false, false, false, true);
             CheckFirstState();
         }
 
         void OnSlowDownExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
 
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
@@ -1074,7 +1075,7 @@ public class TutorialManager : MonoBehaviour
                 if (!statePassed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Down))
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                  //  _interface.ShowHideTutorial(false);
                     statePassed = true;
                     //playerKinem.SetDirectionsEnabled(false, false, false, false);
                 }
@@ -1118,9 +1119,9 @@ public class TutorialManager : MonoBehaviour
         bool stopTargetKeyPressed = false;
         void OnStopTargetEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.stopOnTarget);
+            //ResetState(CQ_Interface.TutorialPages.stopOnTarget);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.stopOnTarget);
-            _interface.ShowHideTutorial(true);
+           // _interface.ShowHideTutorial(true);
             playerKinem.SetDirectionsEnabled(false, false, false, true);
             CheckFirstState();
             stopTargetKeyPressed = false;
@@ -1128,7 +1129,7 @@ public class TutorialManager : MonoBehaviour
 
         void OnStopTargetExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
             if (stateResetted)
@@ -1166,7 +1167,7 @@ public class TutorialManager : MonoBehaviour
                     if (proximityCheck)
                     {
                         genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                        _interface.ShowHideTutorial(false);
+                        //_interface.ShowHideTutorial(false);
                         tutorialManager.GoToNextStep(true);
                     }
                     else
@@ -1196,9 +1197,9 @@ public class TutorialManager : MonoBehaviour
         void OnStartAgainEnter(TutorialFSM self, float time)
         {
             playerKinem.SendMessage("SetInputEnabled", false);
-            _interface.GoToTutorialState(CQ_Interface.TutorialPages.startAgain, "Start again");
+           // _interface.GoToTutorialState(CQ_Interface.TutorialPages.startAgain, "Start again");
             startAgainTimer = TimeManager.Instance.MasterSource.TotalTime; 
-            _interface.ShowHideTutorial(true);
+           // _interface.ShowHideTutorial(true);
             playerKinem.KinematicState = 0;
             playerKinem.DisableAllDirections();
         }
@@ -1226,16 +1227,16 @@ public class TutorialManager : MonoBehaviour
 
         void OnTurnBackEnter(TutorialFSM self, float time)
         {
-            ResetState(CQ_Interface.TutorialPages.retroFront);
+            // ResetState(CQ_Interface.TutorialPages.retroFront);
             //_interface.GoToTutorialState(CQ_Interface.TutorialPages.shortBack);
-            _interface.ShowHideTutorial(true);
+            //_interface.ShowHideTutorial(true);
             playerKinem.SetDirectionsEnabled(false, false, false, true);
             CheckFirstState();
         }
 
         void OnTurnBackExec(TutorialFSM self, float time)
         {
-            _interface.UpdateFade();
+           // _interface.UpdateFade();
 
 
             float now = TimeManager.Instance.MasterSource.TotalTime;
@@ -1263,7 +1264,7 @@ public class TutorialManager : MonoBehaviour
                 if (!statePassed && bbManager.GetDirectionOnce(BalanceBoardManager.Directions.Down))
                 {
                     genSoundsManager.SendMessage("PlayGeneralSound", GeneralSoundsManager.GeneralSounds.clueOK);
-                    _interface.ShowHideTutorial(false);
+                   // _interface.ShowHideTutorial(false);
                     statePassed = true;
                     turnBackTimer = now;
                 }
@@ -1331,7 +1332,7 @@ public class TutorialManager : MonoBehaviour
 
     void StartChangeSequence(TutorialStates[] stepsList, string[] stepMessagesList)
     {
-        _interface.StartFadeOut(0.5f, () => { ChangeSequence(stepsList, stepMessagesList); }); 
+       // _interface.StartFadeOut(0.5f, () => { ChangeSequence(stepsList, stepMessagesList); }); 
     }
 
     void ChangeSequence(TutorialStates[] stepsList, string[] messagesList)
@@ -1342,7 +1343,7 @@ public class TutorialManager : MonoBehaviour
         newSequence = true;
         currentStep = 0;
         fsm.State = currentTutorialStatesSequence[currentStep];
-        _interface.StartFadeIn(0.5f, null);
+       // _interface.StartFadeIn(0.5f, null);
     }
 
     void GoToNextStep(bool currentStepValid)
@@ -1445,7 +1446,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        _interface = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+       // _interface = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
         gameplayManager = GameObject.FindGameObjectWithTag("GameManagers").GetComponent<GameplayManager>();
     }
 
@@ -1460,13 +1461,13 @@ public class TutorialManager : MonoBehaviour
             GoToNextStep(true);
         }
 #endif
-        if (_interface.State == CQ_Interface.TutorialPage)
+        /*if (_interface.State == CQ_Interface.TutorialPage)
         {
             fsm.Update();
             //_interface.UpdateFade();
             if (!tutorialFinished)
                 UpdateToken();
-        }
+        } */
 
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Keypad0))

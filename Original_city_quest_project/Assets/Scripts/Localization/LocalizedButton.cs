@@ -28,7 +28,7 @@ public class LocalizedButton
     protected float leftX;
     protected float rightX;
 
-    protected CQ_Interface interfaces;
+   // protected CQ_Interface interfaces;
 
     public enum Alignment
     {
@@ -86,7 +86,7 @@ public class LocalizedButton
             //arrowMc = null;
         }
 
-        interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+        //interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
         
         SetButtonEvents();
     }

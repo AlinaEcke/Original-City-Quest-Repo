@@ -33,7 +33,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
     protected float angleTarget = 0.0f;
     protected float verticalSpeed = 0.0f;
     protected float horizontalInput = 0.0f;
-    protected float speed = 1.2f;
+    public float speed = 1.2f;
     protected float redBlinkTimer = -1.0f;
     protected float alpha = 0.7f;
     protected float inputDownTimer = -1.0f;
@@ -53,7 +53,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
     protected List<Material> materialList = new List<Material>();
     protected Transform characterRoot;
     protected GameObject cameraObj;
-    public CQ_Interface interfaces;
+    //public CQ_Interface interfaces;
     protected List<int> wallIndexes = new List<int>();
     protected GameplayManager gameplay = null;
     protected Preloader preloader = null;
@@ -110,7 +110,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         characterRoot = transform.GetChild(0);
 
         cameraObj = GameObject.FindGameObjectWithTag("MainCamera");
-        interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
+        //interfaces = GameObject.FindGameObjectWithTag("Interface").GetComponent<CQ_Interface>();
 
 
      /*   CameraController = gameObject.GetComponentInChildren<OVRCameraController>();   
@@ -128,18 +128,24 @@ public class PlayerKinematicBehaviour : MonoBehaviour
     {
         UpdateOnToken();
 
-        if (IsRotating)
+
+		/*if (IsRotating)
         {
             UpdateRotation();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         { 
-            if(interfaces.State != CQ_Interface.TutorialPage)
+           // if(interfaces.State != CQ_Interface.TutorialPage)
                 ResetCharacter();
         }
+        */
 
-        controller.SimpleMove(transform.TransformDirection(velocity));
+		Vector3 cameraFacingDir = Camera.main.transform.forward;
+		Vector3 movementVector = new Vector3(cameraFacingDir.x, 0f, cameraFacingDir.z)*speed*Time.deltaTime*Input.GetAxis ("Vertical");
+		Vector3 cameraRight = Vector3.Cross(cameraFacingDir.normalized, Vector3.up.normalized);
+		movementVector = movementVector + new Vector3(cameraRight.x, 0f, cameraRight.z)*speed*Time.deltaTime*-Input.GetAxis ("Horizontal");
+		controller.SimpleMove(movementVector);
     }
 
     /*void OnGUI()
@@ -239,7 +245,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         }
     }
 
-    protected void ComputeInput(out float horizontal, out float vertical, bool forceKeyDown)
+    /*protected void ComputeInput(out float horizontal, out float vertical, bool forceKeyDown)
     {
         horizontal = 0.0f;
         vertical = 0.0f;
@@ -262,7 +268,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
             vertical = 1.0f;
         if (inputDown)
         {
-            if(interfaces.State != CQ_Interface.TutorialPage)
+            //if(interfaces.State != CQ_Interface.TutorialPage)
                 inputDownTimer = TimeManager.Instance.MasterSource.TotalTime;
             vertical = -1.0f;
         }
@@ -317,6 +323,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
             }
         }
     }
+    */
 
     protected void UpdateVelocityByInput(float horizontal, float vertical)
     {
@@ -511,10 +518,10 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         float time = TimeManager.Instance.MasterSource.TotalTime;
 
         float horizontal, vertical;
-        ComputeInput(out horizontal, out vertical, false);
+        //ComputeInput(out horizontal, out vertical, false);
 
-        UpdateVelocityByInput(0.0f, verticalSpeed);
-        UpdateRotationByInput(0.0f);
+        //UpdateVelocityByInput(0.0f, verticalSpeed);
+        //UpdateRotationByInput(0.0f);
 
         string target = "";
         if (gameplay.Gameplay == GameplayManager.GameplayType.Navigation)
@@ -524,7 +531,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         }
         
 
-        if (vertical > 0.0f)
+        /*if (vertical > 0.0f)
         {
             if (isWalkingSpeed2)
             {
@@ -544,6 +551,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
             TrackingManager.Instance.LogEntry(TrackingManager.Command.Action, target, transform.position, "backward", "180");
             //lastTurnState = Stay;
         }
+        */
 
         if (redTimer > 0)
         {
@@ -586,10 +594,10 @@ public class PlayerKinematicBehaviour : MonoBehaviour
 
     }
 
-    void OnWalkExec()
+    /*void OnWalkExec()
     {
         float horizontal, vertical;
-        ComputeInput(out horizontal, out vertical, false);
+        //ComputeInput(out horizontal, out vertical, false);
 
         if (IsRotating || currentTokenHit.token.type == Token.TokenType.Cross)
             vertical = 0.0f;
@@ -617,6 +625,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
             TrackingManager.Instance.LogEntry(TrackingManager.Command.Action, target, transform.position, "backward", "stop");
         }
     }
+*/
     void OnWalkExit()
     {
     }
@@ -640,10 +649,11 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         }
 
     }
+    /*
     void OnWalkFastExec()
     {
         float horizontal, vertical;
-        ComputeInput(out horizontal, out vertical, false);
+        //ComputeInput(out horizontal, out vertical, false);
 
         if (IsRotating || currentTokenHit.token.type == Token.TokenType.Cross)
             vertical = 0.0f;
@@ -657,6 +667,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         if (!preloader.useOVR)
             UpdateRotationByInput(horizontal);
 
+
         if (vertical < 0.0f)
         {
             fsm.State = Walk;
@@ -666,6 +677,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
             TrackingManager.Instance.LogEntry(TrackingManager.Command.Action, target, transform.position, "backward", "speed_1");
         }
     }
+    */
     void OnWalkFastExit()
     {
     }
@@ -675,8 +687,8 @@ public class PlayerKinematicBehaviour : MonoBehaviour
     {
         //gameObject.GetComponentInChildren<OVRGui>().
         verticalSpeed = 0.0f;
-        UpdateVelocityByInput(0.0f, verticalSpeed);
-        interfaces.ShowDirectionArrows(availableDirections[0], availableDirections[1], availableDirections[2]);
+        //UpdateVelocityByInput(0.0f, verticalSpeed);
+       // interfaces.ShowDirectionArrows(availableDirections[0], availableDirections[1], availableDirections[2]);
 
         gameplay.ActualDistance += ComputeLongDist(transform.position);
         lastPosition = transform.position;
@@ -701,16 +713,17 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         float time = TimeManager.Instance.MasterSource.TotalTime;
 
         float horizontal, vertical;
-        ComputeInput(out horizontal, out vertical, true);
+        //ComputeInput(out horizontal, out vertical, true);
 
-        UpdateVelocityByInput(0.0f, verticalSpeed);
-        UpdateRotationByInput(0.0f);
+        //UpdateVelocityByInput(0.0f, verticalSpeed);
+        //UpdateRotationByInput(0.0f);
 
         string target = "";
         if (null != gameplay.CurrentTarget)
             target = (gameplay.Gameplay == GameplayManager.GameplayType.Navigation) ? gameplay.CurrentTarget.type.ToString() : "";
 
-        if (vertical > 0 && availableDirections[0])
+        /*
+         * if (vertical > 0 && availableDirections[0])
         {
             wallIndexes.Remove(forwardIndex);
             if (isWalkingSpeed2)
@@ -761,11 +774,12 @@ public class PlayerKinematicBehaviour : MonoBehaviour
             TrackingManager.Instance.LogEntry(TrackingManager.Command.Action, target, transform.position, "backward", "180");
             Debug.Log("DOWN");
         }
+        */
     }
     void OnChooseExit()
     {
       //  Debug.Log("OnChooseExit ");
-        interfaces.HideDirectionArrows();
+       // interfaces.HideDirectionArrows();
         if (enableWalls)
         {
             envManager.EnableWallOnToken(currentTokenHit.token, wallIndexes);
