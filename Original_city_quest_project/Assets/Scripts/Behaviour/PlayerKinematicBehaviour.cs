@@ -780,11 +780,14 @@ public class PlayerKinematicBehaviour : MonoBehaviour
     {
       //  Debug.Log("OnChooseExit ");
        // interfaces.HideDirectionArrows();
-        if (enableWalls)
+        
+		//Disabling walls, to allow player's unrestricted movement at junctions:
+		/*if (enableWalls)
         {
             envManager.EnableWallOnToken(currentTokenHit.token, wallIndexes);
             Debug.Log("Enabled walls: " + wallIndexes);
         }
+        */
     }
 
     void OnTurnBackEnter()

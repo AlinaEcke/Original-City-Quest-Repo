@@ -48,8 +48,12 @@ Temporary Items
 
 *.csproj
 *.sln
+*.sln.*
 
 Library
 Logs
 *.suo
 Original_city_quest_project/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.dll
+*.cache
+*.pdb
