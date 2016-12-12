@@ -486,7 +486,7 @@ public class GameplayManager : MonoBehaviour
         this.StartCoroutine(this.LoadGenConfigXml(configText));
     }
 
-    void OnEnvironmentReady(int level)
+    public void OnEnvironmentReady(int level)
     {
         this.level = level;
 

@@ -56,6 +56,8 @@ public class MainMenu : MonoBehaviour {
 		envMgr.StartCreateEnvironment();
 
 		//Placing character in level:
-		gameManagers.GetComponent<GameplayManager>().InitializeCharacter(0);
+		GameplayManager gameplayManager = gameManagers.GetComponent<GameplayManager> ();
+		gameplayManager.InitializeCharacter(0);
+		gameplayManager.OnEnvironmentReady(1);
 	}
 }
