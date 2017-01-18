@@ -58,6 +58,10 @@ public class MainMenu : MonoBehaviour {
 		//Placing character in level:
 		GameplayManager gameplayManager = gameManagers.GetComponent<GameplayManager> ();
 		gameplayManager.InitializeCharacter(0);
+
+		//Call this to create the target stack:
+		DataContainer.Instance.UnloadLevelData();
+
 		gameplayManager.OnEnvironmentReady(1);
 	}
 }
