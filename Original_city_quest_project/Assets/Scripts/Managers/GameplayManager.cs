@@ -412,6 +412,17 @@ public class GameplayManager : MonoBehaviour
 
         gameplayTime = 120.0f;// startGameplayTime[level];
     }
+
+	void Update() {
+		if (currentTarget != null) {
+			//set highlight position to current target:
+			Transform highlightTransform = GameObject.Find ("currentTargetHighlight").transform;
+			highlightTransform.position = new Vector3(
+				currentTarget.gameObject.transform.position.x, 
+				highlightTransform.position.y, 
+				currentTarget.gameObject.transform.position.z);
+		}
+	}
     #endregion
 
     #region Messages
@@ -1138,7 +1149,9 @@ public class GameplayManager : MonoBehaviour
     }
     void OnBriefingStateExit()
     {
-       // interfaces.HideInstructions();
+       
+		character.GetComponent<PlayerKinematicBehaviour>().AllowPlayerMovement();
+		// interfaces.HideInstructions();
        // interfaces.SendMessage("SetTargetSignsVisibility", true);
     }
 
@@ -1147,6 +1160,8 @@ public class GameplayManager : MonoBehaviour
     {
         Debug.Log("STO CERCANDO IL TARGET: " + currentTarget.type);
     }
+
+	//target detection happens here
     void OnSearchingStateExec()
     {
         float currentTime = TimeManager.Instance.MasterSource.TotalTime;
@@ -1161,21 +1176,19 @@ public class GameplayManager : MonoBehaviour
             stayTimer = -1.0f;
         }
 
-        float elapsedTime = currentTime - stayTimer;
-        if (stayTimer > 0.0f && elapsedTime > 1.0f)
+        Transform playerTr = character.transform;
+        if (currentTarget.gameObject != null)
         {
-            Transform playerTr = character.transform;
-            if (currentTarget.gameObject != null)
+			//checks if player position is close to a current target position and marks the target as found if it is
+            Transform targetTr = currentTarget.gameObject.transform;
+            if ((playerTr.position - targetTr.position).magnitude < 12.0f)
             {
-                Transform targetTr = currentTarget.gameObject.transform;
-                if ((playerTr.position - targetTr.position).magnitude < 12.0f)
+                Vector3 localPlayerPos = targetTr.InverseTransformPoint(playerTr.position);
+                bool proximityCheck = (localPlayerPos.x > -1.0f) && (localPlayerPos.x < 6.0f);
+                if (proximityCheck)
                 {
-                    Vector3 localPlayerPos = targetTr.InverseTransformPoint(playerTr.position);
-                    bool proximityCheck = (localPlayerPos.x > -1.0f) && (localPlayerPos.x < 6.0f);
-                    if (proximityCheck)
-                    {
-                        fsm.State = Found;
-                    }
+                    fsm.State = Found;
+					Debug.Log ("Found TARGET YUHUUUUU!");
                 }
             }
         }

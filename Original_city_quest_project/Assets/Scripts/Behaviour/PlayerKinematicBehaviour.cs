@@ -230,17 +230,17 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         if (!isWalkingSpeed2)
         {
             verticalSpeed = 1.0f;
-            speed = 1.10f;
+            //speed = 1.10f;
 #if UNITY_EDITOR    //CHEAT DENIS
-            speed = 1.10f;
+            //speed = 1.10f;
 #endif
         }
         else
         {
             verticalSpeed = 1.0f;
-            speed = 1.6f;
+            //speed = 1.6f;
 #if UNITY_EDITOR //cheat Denis
-            speed = 1.6f;
+            //speed = 1.6f;
 #endif
         }
     }
@@ -529,7 +529,6 @@ public class PlayerKinematicBehaviour : MonoBehaviour
             if (null != gameplay.CurrentTarget)
                 target = gameplay.CurrentTarget.type.ToString();
         }
-        
 
         /*if (vertical > 0.0f)
         {
@@ -563,6 +562,12 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         }
     }
 
+	//allow player to walk
+	public void AllowPlayerMovement (){
+
+		fsm.State = Walk;
+	}
+
     void OnStayExit()
     {
     }
@@ -573,9 +578,9 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         {
             turnCounter = 0;
             verticalSpeed = 1.0f;
-            speed = 1.10f;
+            //speed = 1.10f;
 #if UNITY_EDITOR    //CHEAT DENIS
-            speed = 1.10f;
+            //speed = 1.10f;
 #endif
             isWalkingSpeed2 = false;
             lastTurnState = Stay;
@@ -584,7 +589,7 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         {
             turnCounter = 0;
             verticalSpeed = 1f;
-            speed = 0.7f;
+            //speed = 0.7f;
             isWalkingSpeed2 = false;
             lastTurnState = Stay;
         
@@ -635,16 +640,16 @@ public class PlayerKinematicBehaviour : MonoBehaviour
         if (rotationTimer < 0)
         {
             verticalSpeed = 1.0f;
-            speed = 1.6f;
+            //speed = 1.6f;
             isWalkingSpeed2 = true;
 #if UNITY_EDITOR //cheat Denis
-            speed = 1.6f;
+            //speed = 1.6f;
 #endif
         }
         else 
         {
             verticalSpeed = 1f;
-            speed = 1f;
+            //speed = 1f;
             isWalkingSpeed2 = true;
         }
 
