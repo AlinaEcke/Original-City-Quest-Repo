@@ -63,5 +63,7 @@ public class MainMenu : MonoBehaviour {
 		DataContainer.Instance.UnloadLevelData();
 
 		gameplayManager.OnEnvironmentReady(1);
+
+		GameObject.Find ("MainMenuCanvas").SetActive(false);
 	}
 }
