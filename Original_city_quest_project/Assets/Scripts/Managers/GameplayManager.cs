@@ -1297,7 +1297,9 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(t);
        // interfaces.StartFadeOut(0.5f,null);
 		yield return new WaitForSeconds(1.0f);
+		preloader.UnloadLevel();
 
+		//preloader.LoadLevel(Level++);
     }
 
     void OnBriefingLearningEnter()
