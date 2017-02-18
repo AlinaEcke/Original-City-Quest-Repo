@@ -2,10 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MainMenu.cs">
     <Files>
-      <File FileName="Assets\Scripts\Managers\GameplayManager.cs" Line="424" Column="4" />
+      <File FileName="Assets\Scripts\Managers\GameplayManager.cs" Line="1309" Column="4" />
       <File FileName="Assets\Scripts\Behaviour\PlayerKinematicBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\SBS\Level\FiniteStateMachine.cs" Line="1" Column="1" />
-      <File FileName="Assets\MainMenu.cs" Line="67" Column="55" />
+      <File FileName="Assets\MainMenu.cs" Line="72" Column="1" />
+      <File FileName="Assets\Scripts\DataContainer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Preloader.cs" Line="244" Column="37" />
+      <File FileName="Assets\Scripts\CQ_Interface.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\EnvironmentManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Utils\InternalConsole.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -23,24 +28,19 @@
       <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original_city_quest_project\Assets\Scripts\CQ_Interface.cs" line="3109" column="1" />
       <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="869" column="27" />
       <Breakpoint enabled="false" file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Behaviour\PlayerKinematicBehaviour.cs" line="838" column="1" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Behaviour\PlayerKinematicBehaviour.cs" line="860" column="1" />
       <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Behaviour\PlayerKinematicBehaviour.cs" line="491" column="27" />
       <Breakpoint enabled="false" file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\DataContainer.cs" line="163" column="1" />
       <Breakpoint enabled="false" file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\EnvironmentManager.cs" line="1833" column="1" />
       <Breakpoint enabled="false" file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\EnvironmentManager.cs" line="1846" column="1" />
       <Breakpoint enabled="false" file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\TrackingManager.cs" line="315" column="1" />
       <Breakpoint enabled="false" file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="863" column="1" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="1202" column="1" />
       <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="954" column="13" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="1161" column="1" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="500" column="22" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="506" column="1" />
       <Breakpoint enabled="false" file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Standard Assets\SBS\Level\FiniteStateMachine.cs" line="118" column="1" />
       <Breakpoint file="C:\Alina Ecke\Original_City_Quest_Unity\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="1150" column="10" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="1167" column="1" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Standard Assets\SBS\Level\FiniteStateMachine.cs" line="76" column="1" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="418" column="1" />
-      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Managers\GameplayManager.cs" line="417" column="31" />
+      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Preloader.cs" line="251" column="1" />
+      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Preloader.cs" line="238" column="9" />
+      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Preloader.cs" line="246" column="9" />
+      <Breakpoint file="C:\Users\aecke\Documents\GitHub\Original-City-Quest-Repo\Original_city_quest_project\Assets\Scripts\Preloader.cs" line="259" column="9" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

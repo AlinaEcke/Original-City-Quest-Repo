@@ -414,7 +414,7 @@ public class GameplayManager : MonoBehaviour
     }
 
 	void Update() {
-		if (currentTarget != null) {
+		if (currentTarget != null && currentTarget.gameObject != null) {
 			//set highlight position to current target:
 			Transform highlightTransform = GameObject.Find ("currentTargetHighlight").transform;
 			highlightTransform.position = new Vector3(
@@ -1296,8 +1296,8 @@ public class GameplayManager : MonoBehaviour
             t = 10.0f;
         yield return new WaitForSeconds(t);
        // interfaces.StartFadeOut(0.5f,null);
-        yield return new WaitForSeconds(1.0f);
-        preloader.UnloadLevel();
+		yield return new WaitForSeconds(1.0f);
+
     }
 
     void OnBriefingLearningEnter()

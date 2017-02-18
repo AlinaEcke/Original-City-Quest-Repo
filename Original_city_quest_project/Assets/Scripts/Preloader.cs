@@ -251,7 +251,7 @@ public class Preloader : MonoBehaviour
         if (loaded)
             this.StartCoroutine(this.UnloadEnvironment());
 
-        loaded = false;
+        loaded = true;
     }
 
     public void CheckSession(string xmlFile)
@@ -499,6 +499,10 @@ public class Preloader : MonoBehaviour
         targetPlaced = false;
 
         InternalConsole.Instance.Log("OnEnvironmentDestroyed");
+
+		GameplayManager gameplayManager = gameManagers.GetComponent<GameplayManager>();
+		gameplayManager.Level = gameplayManager.Level + 1;
+		LoadLevel(gameplayManager.Level);
 
       //  _interface.SendMessage("GoToNextInterfaceState");
     }

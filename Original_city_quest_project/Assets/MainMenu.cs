@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
+	public string sceneFileName;
+
 	GameObject gameManagers;
 	EnvironmentManager envMgr;
 	GameplayManager gpMgr;
@@ -28,8 +30,8 @@ public class MainMenu : MonoBehaviour {
 	public void PlayNavigation() {
 		//calling Play method to create level from xml:
 		Play (GameplayManager.GameplayType.Navigation);
-		DataContainer.SetFileName("Sessions\\currentSession" + ".ses");
-		DataContainer.SaveToFile();
+		//DataContainer.SetFileName("Sessions\\" + sessionFileName);
+		//DataContainer.SaveToFile();
 	}
 
 	public void PlayObstacleAvoidance() {
@@ -44,7 +46,7 @@ public class MainMenu : MonoBehaviour {
 		gpMgr.gameplayType = gameplayType;
 
 		//To load xml string from given file name:
-		string filePath = "./Configurations/xml\\scene.xml";
+		string filePath = "./Configurations/xml\\" + sceneFileName;
 		string configText = System.IO.File.ReadAllText(filePath);
 
 		//To load xml file into EnvironmentManager object, call (passing in the xml as a string):
