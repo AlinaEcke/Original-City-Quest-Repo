@@ -1515,19 +1515,35 @@ public class GameplayManager : MonoBehaviour
     {
         gameplayTime = startGameplayTime[level-1];
         //interfaces.SetGameTimeVisibility(false);
-    }
-    void OnObstAvoidExec()
-    {
-       // gameplayTime -= TimeManager.Instance.MasterSource.DeltaTime;
+	}
 
-        if (gameplayTime <= 0.0f)
-            fsm.State = ObstEnd;
+	bool AllGemsCollected () {
 
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.K))
-            fsm.State = ObstEnd;
-#endif
-    }
+		int totalNumberOfGems = envManager.Crosses.Count;
+
+		if (totalNumberOfGems - bonusCounter == 0) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	void OnObstAvoidExec()
+	{
+		// gameplayTime -= TimeManager.Instance.MasterSource.DeltaTime;
+
+		//if (gameplayTime <= 0.0f)
+		if (AllGemsCollected ()) {
+
+			fsm.State = ObstEnd;
+		}
+
+		#if UNITY_EDITOR
+		if (Input.GetKeyDown(KeyCode.K))
+			fsm.State = ObstEnd;
+		#endif
+	}
     void OnObstAvoidExit()
     {
     }

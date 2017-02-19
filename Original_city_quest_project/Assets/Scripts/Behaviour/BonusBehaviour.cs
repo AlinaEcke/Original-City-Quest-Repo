@@ -86,11 +86,11 @@ public class BonusBehaviour : MonoBehaviour
         }
         else
         {
-            float time = TimeManager.Instance.MasterSource.TotalTime;
-            if (time - collectedTimer > RESPAWN_TIME)
-            {
-                Activate();
-            }
+			float time = TimeManager.Instance.MasterSource.TotalTime;
+			//if (time - collectedTimer > RESPAWN_TIME)
+			//{
+			// Activate();
+			//}
         }
 
         UpdateCrossColor();
